@@ -8,16 +8,24 @@ using namespace std;
 class PlaylistNode{
 
     PlaylistNode();
-    //Parameterized constructor? suppose to be here.
+    PlaylistNode(string, string, string, int);
 
     public:
-        void InsertAfter(); //not sure if it's suppose to be void
+        void InsertAfter();
         void SetNext();
         string GetID() const;
-
-        
-
-
+        string GetSongName() const;
+        string GetArtistName() const;
+        string GetSongLength() const;
+        string GetNext() const;
+        void PrintPlaylistNode();
+    
+    private:
+        string uniqueID;
+        string songName;
+        string artistName;
+        int songLength;
+        PlaylistNode* nextNodePtr;
 };
 
 #endif
