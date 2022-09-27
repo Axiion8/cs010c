@@ -32,9 +32,6 @@ int main(){
         }
         else if(menuIn == "o"){ //STEP 4
             cout << playlistName << " - OUTPUT FULL PLAYLIST" << endl;
-            if (head == nullptr){
-                
-            }
         }
     }
 

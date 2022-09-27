@@ -11,13 +11,13 @@ class PlaylistNode{
     PlaylistNode(string, string, string, int);
 
     public:
-        void InsertAfter();
-        void SetNext();
+        void InsertAfter(PlaylistNode*); //added pointer parameter
+        void SetNext(PlaylistNode*);
         string GetID() const;
         string GetSongName() const;
         string GetArtistName() const;
-        string GetSongLength() const;
-        string GetNext() const;
+        int GetSongLength() const;
+        PlaylistNode* GetNext() const;
         void PrintPlaylistNode();
     
     private:
