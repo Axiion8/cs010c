@@ -1,52 +1,53 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
 #include "Playlist.h"
 
-PlaylistNode::PlaylistNode(){
-    uniqueID = "none";
-    songName = "none";
-    artistName = "none";
-    songLength = 0;
+PlaylistNode::PlaylistNode() {
+    this->uniqueID = "none";
+    this->songName = "none";
+    this->artistName = "none";
+    this->songLength = 0;
+    nextNodePtr = 0;
+}
+PlaylistNode::PlaylistNode(string uID, string songN, string artistN, int songL) {
+    this->uniqueID = uID;
+    this->songName = songN;
+    this->artistName = artistN;
+    this->songLength = songL;
     nextNodePtr = nullptr;
 }
-
-PlaylistNode::PlaylistNode(string uniqueID, string songName, string artistName, int songLength){
-    this->uniqueID = uniqueID;
-    this->songName = songName;
-    this->artistName = artistName;
-    this->songLength = songLength;
-    nextNodePtr = nullptr;
+void PlaylistNode::InsertAfter(PlaylistNode* node) {
+    PlaylistNode* tmpNext = nullptr;
+    tmpNext = nextNodePtr;
+    nextNodePtr = node;
+    node->nextNodePtr = tmpNext;
+}
+void PlaylistNode::SetNext(PlaylistNode* next) {
+    nextNodePtr = next;
+}
+string PlaylistNode::GetID() {
+    return this->uniqueID;
+}
+string PlaylistNode::GetSongName() {
+    return this->songName;
+}
+string PlaylistNode::GetArtistName() {
+    return this->artistName;
+}
+int PlaylistNode::GetSongLength() {
+    return this->songLength;
+}
+PlaylistNode* PlaylistNode::GetNext() {
+    return this->nextNodePtr;
+}
+void PlaylistNode::PrintPlaylistNode() {
+    cout << "Unique ID: " << this->uniqueID << endl;
+    cout << "Song Name: " << this->songName << endl;
+    cout << "Artist Name: " << this ->artistName << endl;
+    cout << "Song Length (in seconds): " << this->songLength << endl;
 }
 
-void PlaylistNode::InsertAfter(PlaylistNode* afterThis){
-    this->nextNodePtr = afterThis->GetNext();
-}
 
-void PlaylistNode::SetNext(PlaylistNode* nextNode){
-    nextNodePtr = nextNode;
-}
 
-string PlaylistNode::GetID() const{
-    return uniqueID;
-}
-
-string PlaylistNode::GetSongName() const{
-    return songName;
-}
-
-string PlaylistNode::GetArtistName() const{
-    return artistName;
-}
-
-int PlaylistNode::GetSongLength() const{
-    return songLength;
-}
-
-PlaylistNode* PlaylistNode::GetNext() const{
-    return nextNodePtr;
-}
-
-void PlaylistNode::PrintPlaylistNode(){
-    cout << "Unique ID: " << uniqueID << endl <<
-            "Song Name: " << songName << endl <<
-            "Artist Name: " << artistName << endl <<
-            "Song Length (in seconds): " << songLength << endl;
-}

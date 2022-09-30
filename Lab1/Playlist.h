@@ -1,25 +1,22 @@
-#ifndef PLAYLIST_H
-#define PLAYLIST_H
-
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-class PlaylistNode{
+#ifndef PLAYLISTNODE_H
+#define PLAYLISTNODE_H
 
-    PlaylistNode();
-    PlaylistNode(string, string, string, int);
-
-    public:
-        void InsertAfter(PlaylistNode*); //added pointer parameter
-        void SetNext(PlaylistNode*);
-        string GetID() const;
-        string GetSongName() const;
-        string GetArtistName() const;
-        int GetSongLength() const;
-        PlaylistNode* GetNext() const;
+class PlaylistNode {
+    public: 
+        PlaylistNode();
+        PlaylistNode(string uID, string songN, string artistN, int songL);
+        void InsertAfter(PlaylistNode* node);
+        void SetNext(PlaylistNode* next); //Mutator
+        string GetID(); //Accessor
+        string GetSongName(); //Accessor
+        string GetArtistName(); //Accessor
+        int GetSongLength(); //Accessor
+        PlaylistNode* GetNext(); //Accessor
         void PrintPlaylistNode();
-    
     private:
         string uniqueID;
         string songName;
