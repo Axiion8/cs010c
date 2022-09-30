@@ -29,6 +29,7 @@ void addsong(PlaylistNode* &current) {
     cout << "Enter song's length (in seconds):"; 
     cin >> sLength;
     cout << endl << endl;
+    cin.ignore(); //used to flush out buffer. (Case #9)
 
     current = new PlaylistNode(uID, sName, aName, sLength);
 }
