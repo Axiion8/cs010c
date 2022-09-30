@@ -14,7 +14,7 @@ void PrintMenu(string playlist) {
     cout << "o - Output full playlist" << endl;
     cout << "q - Quit" << endl;
 }
-void addsong(PlaylistNode* current) {
+void addsong(PlaylistNode* &current) {
     string uID;
     string sName;
     string aName;
@@ -26,15 +26,16 @@ void addsong(PlaylistNode* current) {
     getline (cin, sName); 
     cout << "Enter artist's name:" << endl;
     getline (cin, aName);
-    cout << "Enter song's length (in seconds):" << endl;
+    cout << "Enter song's length (in seconds):"; 
     cin >> sLength;
+    cout << endl << endl;
 
     current = new PlaylistNode(uID, sName, aName, sLength);
 }
 void removesong(PlaylistNode* head, string idtoremove) { // Used resource from Scaler Academy
     PlaylistNode* temp = nullptr;
     if (head->GetID() == idtoremove) {
-        cout << "\"" << head->GetSongName() << "\" removed" << endl;
+        cout << "\"" << head->GetSongName() << "\" removed." << endl << endl;
         temp = head;
         head = head->GetNext();
         delete temp;
@@ -43,7 +44,7 @@ void removesong(PlaylistNode* head, string idtoremove) { // Used resource from S
         PlaylistNode* curr = head;
         while (curr->GetNext() != nullptr) {
             if (curr->GetNext()->GetID() == idtoremove) {
-                cout << "\"" << curr->GetNext()->GetSongName() << "\" removed" << endl;
+                cout << "\"" << curr->GetNext()->GetSongName() << "\" removed." << endl << endl;
                 temp = curr->GetNext();
                 curr->SetNext(curr->GetNext()->GetNext());
                 delete temp;
@@ -83,17 +84,18 @@ void changeposition (PlaylistNode* head, int position, PlaylistNode* currNode) {
 }
 
 void outputplaylist(PlaylistNode* head) {
-    PlaylistNode* curr = head;
-    int number = 1;
+
     if (head == nullptr) {
-        cout << "Playlist is empty" << endl;
-        cout << endl;
+        cout << "Playlist is empty" << endl << endl;
     }
     else {
+        PlaylistNode* curr = head;
+        int number = 1;
         while (curr != nullptr) {
             cout << number << "." << endl;
             curr->PrintPlaylistNode();
             curr = curr->GetNext();
+            number++;
         }
     }
 }
@@ -107,7 +109,7 @@ void outputsongs(PlaylistNode* head, string artistName) {
             cout << number << "." << endl;
             curr->PrintPlaylistNode();
         }
-        number = number + 1;
+        number++;
         curr = curr->GetNext();
     }
 }
@@ -117,27 +119,32 @@ void totaltime(PlaylistNode* head) {
     curr = head;
     int total = 0;
     while (curr != nullptr) {
-        total = total + curr->GetSongLength();
+        total += curr->GetSongLength();
         curr = curr->GetNext();
     }
     cout << "OUTPUT TOTAL TIME OF PLAYLIST (IN SECONDS)" << endl;
-    cout << "Total time: " << total << " seconds" << endl;
+    cout << "Total time: " << total << " seconds" << endl << endl;
 }
 
 int main() {
     string playlist;
     string option;
     string idtoremove;
+
     int i;
     int position;
     int newposition;
     bool help = false;
+
     PlaylistNode* head = nullptr;
     PlaylistNode* tail = nullptr;
     PlaylistNode* curr = nullptr;
+
+
     cout << "Enter playlist's title:" << endl;
     getline (cin, playlist);
     cout << endl;
+
     while (option != "q") {
         PrintMenu(playlist);
         cout << endl;
@@ -157,7 +164,7 @@ int main() {
         }
         else if (option == "d") {
             cout << "REMOVE SONG" << endl;
-            cout << "Enter song's unique ID: " << endl;
+            cout << "Enter song's unique ID:" << endl;
             getline (cin, idtoremove);
             removesong(head, idtoremove);
         }
@@ -179,7 +186,7 @@ int main() {
         else if (option == "s") {
             string artistname;
             cout << "OUTPUT SONGS BY SPECIFIC ARTIST" << endl;
-            cout << "Enter artist's name: " << endl;
+            cout << "Enter artist's name:" << endl << endl;
             getline (cin, artistname);
             outputsongs(head, artistname);
         }
