@@ -76,18 +76,48 @@ void IntList::pop_back(){
 }
 
 bool IntList::empty() const{
-    if(dummyHead->next = dummyTail){
-        return false;
+    if(dummyHead->next == dummyTail){
+        return true;
     }
     else{
-        return true;
+        return false;
     }
 }
 
 ostream& operator<<(ostream &out, const IntList &rhs){
+    if(rhs.empty()){
+        out << "";
+        return out;
+    }
+    
+    else{
+        IntNode* currNode = rhs.dummyHead->next;
 
+        while (currNode != rhs.dummyTail){
+            if (currNode->next != rhs.dummyTail){
+                out << currNode->data << " ";
+            }
+            else{
+                out << currNode->data;
+            }
+            currNode = currNode->next;
+        }
+        return out;
+    }
 }
 
 void IntList::printReverse() const{
+    if(!empty()){
+        IntNode* currNode = dummyTail->prev;
 
+        while(currNode != dummyHead){
+            if(currNode->prev != dummyHead){
+                cout << currNode->data << " ";
+            }
+            else{
+                cout << currNode->data;
+            }
+            currNode = currNode->prev;
+        }
+    }
 }
