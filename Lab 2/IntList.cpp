@@ -31,12 +31,13 @@ void IntList::push_front(int value){
 
 void IntList::pop_front(){
     if(!empty()){
-        IntNode* currNode = dummyHead->next;
+        IntNode* currNode = dummyHead->next;//make new ptrs
         IntNode* sucNode = currNode->next;
 
-        sucNode->prev = dummyHead;
+        sucNode->prev = dummyHead;//
         dummyHead->next = sucNode;
         delete currNode;
+        currNode = nullptr;
     }
 }
 
@@ -51,7 +52,26 @@ void IntList::push_back(int value){
         dummyHead->next = newNode;
     }
     else{
-        
+        IntNode* newNode = new IntNode(value);//set up ptrs
+        IntNode* currNode = dummyTail->prev;
+
+        newNode->prev = currNode;//linking newNode to neighbors
+        newNode->next = dummyTail;
+
+        currNode->next = newNode;//linking neighbors to newNode
+        dummyTail->prev = newNode;
+    }
+}
+
+void IntList::pop_back(){
+    if(!empty()){//if empty, function does nothing
+        IntNode* currNode = dummyTail->prev;//set up ptrs
+        IntNode* sucNode = currNode->prev;
+
+        sucNode->next = dummyTail;
+        dummyTail->prev = sucNode;
+        delete currNode;
+        currNode = nullptr;
     }
 }
 
@@ -62,4 +82,12 @@ bool IntList::empty() const{
     else{
         return true;
     }
+}
+
+ostream& operator<<(ostream &out, const IntList &rhs){
+
+}
+
+void IntList::printReverse() const{
+
 }
