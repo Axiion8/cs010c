@@ -34,7 +34,7 @@ void selection_sort(vector<T> &vals) {
 template <typename T>
 T getElement(vector<T> vals, int index) {
     long unsigned int i;
-    int helper;
+    T helper;
     long unsigned int indexHelper = index;
     if ((indexHelper < 0) || (indexHelper >= vals.size())) {
         throw out_of_range("out of range exception occured");
