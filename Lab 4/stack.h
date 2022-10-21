@@ -10,8 +10,8 @@ template<typename T>
 class stack {
 
     private:
-        static const int length = 20;
-        T data[length];
+        static const int MAX_SIZE = 20;
+        T data[MAX_SIZE];
         int size;
     public:
         stack<T>(){
@@ -19,7 +19,7 @@ class stack {
         }
 
         void push(T val){
-            if(size == length){
+            if(size == MAX_SIZE){
                 throw overflow_error("Called push on full stack.");
             }
             else{
