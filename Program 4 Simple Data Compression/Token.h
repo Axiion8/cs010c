@@ -1,4 +1,8 @@
-//used GeeksForGeeks insertion algorithm
+/*Online Sources Used:
+
+https://www.geeksforgeeks.org/insertion-sort/
+https://linuxhint.com/remove-first-character-string-cpp/#:~:text=Example%201%3A%20Remove%20the%20First,from%20a%20string%20in%20place.
+*/
 
 #ifndef TOKEN_H
 #define TOKEN_H
